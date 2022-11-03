@@ -64,6 +64,10 @@ main {
     background-color: yellow;
 }
 
+.cell.danger {
+    background-color: red;
+}
+
 footer {
     height: 50px;
 }

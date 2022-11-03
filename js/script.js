@@ -7,17 +7,21 @@ let eleGrid = document.querySelector('.grid')
 let button = document.getElementById('play')
 let difficulty = document.getElementById('difficulty')
 button.addEventListener('click', play) 
+let score = 0
 
 function bombe() {
     let arrBombs = []
     for (let i = 0; i < 16; i++) {
         let bomb = Math.floor(Math.random() * difficulty.value * difficulty.value)
         arrBombs.push(bomb)
+        
     }
+return arrBombs
 }
 
 function play() {
     eleGrid.innerHTML = ''
+    let bombs = bombe()
     for ( let i = 1; i <= difficulty.value * difficulty.value; i++) {
     const eleCell = document.createElement('div')
     eleCell.classList.add('cell')
@@ -27,11 +31,18 @@ function play() {
 
     
     eleCell.addEventListener('click', function () {
-        this.classList.toggle('active')  
+        if (bombs.includes(i)){
+            i++
+            this.classList.toggle('danger')
+            alert('hai perso. il tuo punteggio è '+score)
+        }   else {
+            this.classList.toggle('active')
+            score++
+       }
+
     }) 
 }
 }
-
 // function getRandomInt(min, max) {
 //     return Math.floor(Math.random() * (max - min + 1)) + min;
 // }
